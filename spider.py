@@ -10,10 +10,8 @@ try:
     request = urllib2.Request(url, headers=headers)
     response = urllib2.urlopen(request)
     content = response.read().decode('utf-8')
-
-    pattern = re.compile('<div class="author clearfix">.*?<h2>(.*?)</h2>.*?"content">.*?<span>(.*?)</span>.*?</div>.*?number">(.*?)</.*?number">(.*?)</.*?<div class="cmtMain">.*?"main-text">(.*?)</div>',re.S)
+    pattern = re.compile('<div class="author clearfix">.*?<h2>(.*?)</h2>.*?"content">(.*?)</div>.*?number">(.*?)</.*?number">(.*?)</.*?<div class="cmtMain">.*?"main-text">(.*?)</div>', re.S)
     items = re.findall(pattern, content)
-
     for item in items:
         print item[0], item[1], item[2], item[3], item[4]
 except urllib2.URLError, e:
